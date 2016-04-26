@@ -8,6 +8,13 @@ import org.jsfml.system.Vector2i;
 public abstract class Entity {
     private Vector2i coord = null;
     private boolean mobile;
+    private int health;
+
+    public Entity(Vector2i coord, boolean mobile, int health){
+        this.coord = coord;
+        this.mobile = mobile;
+        this.health = health;
+    }
 
     public Vector2i getCoord() {
         return coord;
@@ -24,4 +31,17 @@ public abstract class Entity {
     public void setMobile(boolean mobile) {
         this.mobile = mobile;
     }
+
+    public boolean isDestroyed(){
+        return health <= 0;
+    }
+
+    // Add x to coord.x and y to coord.y
+    public void move(int x, int y){
+        if(mobile) {
+            coord = new Vector2i(coord.x + x, coord.y + y);
+        }
+    }
+
+
 }
