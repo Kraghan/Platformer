@@ -7,16 +7,9 @@ import Level.Level;
 public class Game {
     Level level = null;
     Player player = null;
-    boolean modeAventure;
 
     public Game(boolean modeAventure){
-        this.modeAventure = modeAventure;
-        if(modeAventure){
-            level = Level.load(1);
-        }
-        else{
-            Level.generateLevel();
-        }
+        level = Level.load(1);
     }
 
     public void save(){

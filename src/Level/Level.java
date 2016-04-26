@@ -63,9 +63,4 @@ public class Level {
 
         return null;
     }
-
-    public static Level generateLevel(){
-
-        return null;
-    }
 }
