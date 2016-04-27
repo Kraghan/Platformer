@@ -7,9 +7,10 @@ import Level.Level;
 public class Game {
     Level level = null;
     Player player = null;
+    GameState state;
 
-    public Game(boolean modeAventure){
-        level = Level.load(1);
+    public Game(){
+        state = GameState.MAIN_MENU;
     }
 
     public void save(){
@@ -22,5 +23,9 @@ public class Game {
 
     public void render(){
         level.render();
+    }
+
+    public GameState getGameState(){
+        return state;
     }
 }

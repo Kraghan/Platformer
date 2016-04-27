@@ -3,20 +3,29 @@
  */
 public class Menu {
     private boolean active = false;
+    private static Menu menu = null;
 
-    public Menu(){
+    public static Menu getInstance(){
+        if(menu == null){
+            menu = new Menu();
+        }
+        return menu;
+    }
+
+    private Menu(){
         active = true;
+
     }
 
     public boolean isActive() {
         return active;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public void renderMainMenu(){
+
     }
 
-    public void render(){
+    public void renderPause(){
 
     }
 }

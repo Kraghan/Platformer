@@ -12,7 +12,6 @@ public class main {
 
         window.setFramerateLimit(60);
 
-        Menu menu = new Menu();
         Game game = new Game();
 
         while (window.isOpen()){
@@ -20,14 +19,24 @@ public class main {
                 if(event.type == Event.Type.CLOSED){
                     window.close();
                 }
+                else if(event.type == Event.Type.KEY_PRESSED){
+
+                }
+                else if(event.type == Event.Type.JOYSTICK_BUTTON_PRESSED){
+
+                }
             }
 
             // On est en menu
-            if(menu.isActive()){
-                menu.render();
+            if(game.getGameState() == GameState.MAIN_MENU){
+                Menu.getInstance().renderMainMenu();
+            }
+            // On est en pause
+            else if(game.getGameState() == GameState.PAUSE){
+                Menu.getInstance().renderPause();
             }
             // On est en jeu
-            else{
+            else if(game.getGameState() == GameState.RUNNING){
                 game.render();
             }
 
