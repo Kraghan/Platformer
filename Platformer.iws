@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c1cee730-cb74-4c4e-afd5-de3df85a4202" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Platformer.iws" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Platformer.iws" afterPath="$PROJECT_DIR$/Platformer.iws" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Level/Platform.java" afterPath="$PROJECT_DIR$/src/Level/Platform.java" />
     </list>
     <ignored path="Platformer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,7 +42,7 @@
       <file leaf-file-name="Entity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Entity/Entity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
+            <state relative-caret-position="566">
               <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
               <folding />
             </state>
@@ -51,7 +52,7 @@
       <file leaf-file-name="Mob.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Entity/Mob.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
+            <state relative-caret-position="187">
               <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
               <folding>
                 <element signature="e#189#190#0" expanded="true" />
@@ -84,14 +85,9 @@
       <file leaf-file-name="Level.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Level/Level.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
+            <state relative-caret-position="566">
               <caret line="64" column="5" selection-start-line="64" selection-start-column="5" selection-end-line="64" selection-end-column="5" />
-              <folding>
-                <element signature="e#791#792#0" expanded="true" />
-                <element signature="e#827#828#0" expanded="true" />
-                <element signature="e#1103#1104#0" expanded="true" />
-                <element signature="e#1137#1138#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -108,7 +104,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TextureManager.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TextureManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Manager/TextureManager.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="306">
@@ -120,11 +116,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Platform.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Platform.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Level/Platform.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="221">
-              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+              <caret line="13" column="89" selection-start-line="13" selection-start-column="89" selection-end-line="13" selection-end-column="89" />
               <folding />
             </state>
           </provider>
@@ -157,7 +153,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/Level/LevelObject.java" />
-        <option value="$PROJECT_DIR$/src/Level/Platform.java" />
         <option value="$PROJECT_DIR$/src/Level/Theme.java" />
         <option value="$PROJECT_DIR$/src/main.java" />
         <option value="$PROJECT_DIR$/src/Menu.java" />
@@ -168,6 +163,7 @@
         <option value="$PROJECT_DIR$/src/Game.java" />
         <option value="$PROJECT_DIR$/src/Manager/TextureManager.java" />
         <option value="$PROJECT_DIR$/src/Manager/SpriteManager.java" />
+        <option value="$PROJECT_DIR$/src/Level/Platform.java" />
       </list>
     </option>
   </component>
@@ -730,7 +726,14 @@
       <option name="project" value="LOCAL" />
       <updated>1461698808459</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Sprite&#10;">
+      <created>1461786891545</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1461786891545</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -782,7 +785,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Entity" />
     <MESSAGE value="Manager" />
-    <option name="LAST_COMMIT_MESSAGE" value="Manager" />
+    <MESSAGE value="Sprite&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Sprite&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -851,12 +855,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="748">
           <caret line="64" column="5" selection-start-line="64" selection-start-column="5" selection-end-line="64" selection-end-column="5" />
-          <folding>
-            <element signature="e#791#792#0" expanded="true" />
-            <element signature="e#827#828#0" expanded="true" />
-            <element signature="e#1103#1104#0" expanded="true" />
-            <element signature="e#1137#1138#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -946,12 +945,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="748">
           <caret line="64" column="5" selection-start-line="64" selection-start-column="5" selection-end-line="64" selection-end-column="5" />
-          <folding>
-            <element signature="e#791#792#0" expanded="true" />
-            <element signature="e#827#828#0" expanded="true" />
-            <element signature="e#1103#1104#0" expanded="true" />
-            <element signature="e#1137#1138#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1041,12 +1035,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="68" column="20" selection-start-line="68" selection-start-column="20" selection-end-line="68" selection-end-column="20" />
-          <folding>
-            <element signature="e#791#792#0" expanded="true" />
-            <element signature="e#827#828#0" expanded="true" />
-            <element signature="e#1103#1104#0" expanded="true" />
-            <element signature="e#1137#1138#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1105,12 +1094,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="68" column="20" selection-start-line="68" selection-start-column="20" selection-end-line="68" selection-end-column="20" />
-          <folding>
-            <element signature="e#791#792#0" expanded="true" />
-            <element signature="e#827#828#0" expanded="true" />
-            <element signature="e#1103#1104#0" expanded="true" />
-            <element signature="e#1137#1138#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1148,69 +1132,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Entity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Mob.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
-          <folding>
-            <element signature="e#189#190#0" expanded="true" />
-            <element signature="e#233#234#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Menu.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Level/Level.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="64" column="5" selection-start-line="64" selection-start-column="5" selection-end-line="64" selection-end-column="5" />
-          <folding>
-            <element signature="e#791#792#0" expanded="true" />
-            <element signature="e#827#828#0" expanded="true" />
-            <element signature="e#1103#1104#0" expanded="true" />
-            <element signature="e#1137#1138#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Level/Platform.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Manager/SpriteManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="34" column="37" selection-start-line="34" selection-start-column="37" selection-end-line="34" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1229,6 +1155,59 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Entity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="566">
+          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Mob.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+          <folding>
+            <element signature="e#189#190#0" expanded="true" />
+            <element signature="e#233#234#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Level/Level.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="566">
+          <caret line="64" column="5" selection-start-line="64" selection-start-column="5" selection-end-line="64" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Manager/SpriteManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="34" column="37" selection-start-line="34" selection-start-column="37" selection-end-line="34" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Level/Platform.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="89" selection-start-line="13" selection-start-column="89" selection-end-line="13" selection-end-column="89" />
+          <folding />
         </state>
       </provider>
     </entry>

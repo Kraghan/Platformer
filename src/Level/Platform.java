@@ -11,6 +11,7 @@ public class Platform {
     public static Platform breakablePlatform = new Platform(true,true,false,true,10,0,0);
     public static Platform nonPermanentPlatform = new Platform(true,false,false,false,0,3,0);
     public static Platform boucyPlatform = new Platform(true,false,true,true,0,0,10);
+    public static Platform nonSolidPlatform = new Platform(false,false,false,true,0,0,0);
 
     public Platform(boolean isSolid, boolean isBreakable, boolean isBouncy, boolean isPermanent,
                     int health, int timeBeforeFall, int bouncyness){
