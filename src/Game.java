@@ -1,5 +1,8 @@
 import Entity.Player;
 import Level.Level;
+import org.jsfml.graphics.Color;
+import org.jsfml.graphics.RenderWindow;
+import org.jsfml.window.Window;
 
 /**
  * Created by madjo on 25/04/2016.
@@ -10,7 +13,8 @@ public class Game {
     GameState state;
 
     public Game(){
-        state = GameState.MAIN_MENU;
+        state = GameState.RUNNING;
+        level = Level.load(0);
     }
 
     public void save(){
@@ -21,8 +25,10 @@ public class Game {
 
     }
 
-    public void render(){
-        level.render();
+    public void render(RenderWindow window){
+        window.clear();
+        level.render(window);
+        window.display();
     }
 
     public GameState getGameState(){

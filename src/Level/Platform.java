@@ -8,19 +8,21 @@ import java.io.Serializable;
 public class Platform implements Serializable{
     protected boolean isSolid = false,isBreakable = false,isBouncy = false,isPermanent = true;
     protected int health = 0, timeBeforeFall = 0, bouncyness = 0;
+    protected String nom;
 
-    public static Platform platform = new Platform(true,false,false,true,0,0,0);
-    public static Platform breakablePlatform = new Platform(true,true,false,true,10,0,0);
-    public static Platform nonPermanentPlatform = new Platform(true,false,false,false,0,3,0);
-    public static Platform boucyPlatform = new Platform(true,false,true,true,0,0,10);
-    public static Platform nonSolidPlatform = new Platform(false,false,false,true,0,0,0);
+    public static Platform platform = new Platform("platform",true,false,false,true,0,0,0);
+    public static Platform breakablePlatform = new Platform("breakableplatform",true,true,false,true,10,0,0);
+    public static Platform nonPermanentPlatform = new Platform("nonpermanentplatform",true,false,false,false,0,3,0);
+    public static Platform bouncyPlatform = new Platform("bouncyplatform",true,false,true,true,0,0,10);
+    public static Platform nonSolidPlatform = new Platform("nonsolidplatform",false,false,false,true,0,0,0);
 
-    public Platform(boolean isSolid, boolean isBreakable, boolean isBouncy, boolean isPermanent,
+    public Platform(String nom,boolean isSolid, boolean isBreakable, boolean isBouncy, boolean isPermanent,
                     int health, int timeBeforeFall, int bouncyness){
         this.isBouncy = isBouncy;
         this.isSolid = isSolid;
         this.isBreakable = isBreakable;
         this.isPermanent = isPermanent;
+        this.nom = nom;
 
         if(isBouncy){
             this.bouncyness = bouncyness;
@@ -111,5 +113,9 @@ public class Platform implements Serializable{
 
     public void setBouncyness(int bouncyness) {
         this.bouncyness = bouncyness;
+    }
+
+    public String getNom(){
+        return nom;
     }
 }

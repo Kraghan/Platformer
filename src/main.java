@@ -1,19 +1,31 @@
-import Level.Level;
-import Level.Platform;
+import Manager.TextureManager;
 import org.jsfml.graphics.RenderWindow;
+import org.jsfml.window.ContextActivationException;
 import org.jsfml.window.VideoMode;
 import org.jsfml.window.event.Event;
+import Level.*;
 
 /**
  * Created by madjo on 25/04/2016.
  */
 public class main {
     public static void main(String[] args){
-        /*RenderWindow window = new RenderWindow();
+        RenderWindow window = new RenderWindow();
         window.create(new VideoMode(640, 480), "Super platformer !");
 
+        TextureManager manager = TextureManager.getInstance();
+        manager.loadTheme(Theme.TEMPLE);
         window.setFramerateLimit(60);
-
+        /*
+        Level l = new Level(50,50);
+        for(int x = 0; x < 50; x++){
+            int y = 24 - x;
+            if(x >= 25)
+                y = x - 24;
+            l.setPlatformsMask(x,y,Platform.platform);
+        }
+        l.save("level0");
+*/
         Game game = new Game();
 
         while (window.isOpen()){
@@ -39,18 +51,11 @@ public class main {
             }
             // On est en jeu
             else if(game.getGameState() == GameState.RUNNING){
-                game.render();
+                game.render(window);
             }
 
-        }*/
-
-        Level level = new Level(50,50);
-        for(int i = 0; i < level.getWidth();i++){
-            int j = 24 - i;
-            if(i >= 25)
-                j = i - 24;
-            level.setPlatformsMask(i,j, Platform.platform);
         }
-        level.save("test");
+
+
     }
 }

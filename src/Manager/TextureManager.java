@@ -34,11 +34,25 @@ public class TextureManager {
         String str = this.theme.name();
 
         try {
-            platformSheet.loadFromFile(Paths.get("spritesheet/" + str + "platformsheet.png"));
-            entitySheet.loadFromFile(Paths.get("spritesheet/" + str + "entitysheet.png"));
-            mobSheet.loadFromFile(Paths.get("spritesheet/" + str + "mobsheet.png"));
+            platformSheet.loadFromFile(Paths.get("res/spritesheet/" + str + "platformsheet.png"));
+            //entitySheet.loadFromFile(Paths.get("res/spritesheet/" + str + "entitysheet.png"));
+            //mobSheet.loadFromFile(Paths.get("res/spritesheet/" + str + "mobsheet.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("Textures loaded");
+        SpriteManager.loadSprite();
+    }
+
+    public Texture getPlatformSheet() {
+        return platformSheet;
+    }
+
+    public Texture getEntitySheet() {
+        return entitySheet;
+    }
+
+    public Texture getMobSheet() {
+        return mobSheet;
     }
 }
