@@ -1,9 +1,11 @@
 package Level;
 
+import java.io.*;
+
 /**
  * Created by madjo on 25/04/2016.
  */
-public class Level {
+public class Level implements Serializable{
     private int heigth = 0, width = 0, gravity = 10;
     private Platform[][] platformsMask = null;
     private Theme theme;
@@ -60,7 +62,66 @@ public class Level {
     }
 
     public static Level load(int numberLevel){
-
+        FileOutputStream fos = null;
+        ObjectOutputStream oos = null;
+        File f = new File("res/levels/"+file+".ser");
+        try {
+            f.createNewFile();
+        } catch (IOException e) {
+            System.err.println("Error : can't create "+file+".ser");
+            e.printStackTrace();
+        }
+        try {
+            fos = new FileOutputStream(f);
+            oos = new ObjectOutputStream(fos);
+        } catch (FileNotFoundException e) {
+            System.err.println("Error : can't open " + file + ".ser");
+        } catch (IOException e) {
+            System.err.println("Error : can't create stream");
+        }
+        finally {
+            if(oos != null){
+                try {
+                    oos.writeObject(this);
+                    oos.flush();
+                    oos.close();
+                } catch (IOException e) {
+                    System.err.println("Error : save fails ");
+                }
+            }
+        }
         return null;
+    }
+
+    public void save(String file){
+        FileOutputStream fos = null;
+        ObjectOutputStream oos = null;
+        File f = new File("res/levels/"+file+".ser");
+        try {
+            f.createNewFile();
+        } catch (IOException e) {
+            System.err.println("Error : can't create "+file+".ser");
+            e.printStackTrace();
+        }
+        try {
+            fos = new FileOutputStream(f);
+            oos = new ObjectOutputStream(fos);
+        } catch (FileNotFoundException e) {
+            System.err.println("Error : can't open " + file + ".ser");
+        } catch (IOException e) {
+            System.err.println("Error : can't create stream");
+        }
+        finally {
+            if(oos != null){
+                try {
+                    oos.writeObject(this);
+                    oos.flush();
+                    oos.close();
+                } catch (IOException e) {
+                    System.err.println("Error : save fails ");
+                }
+            }
+        }
+
     }
 }

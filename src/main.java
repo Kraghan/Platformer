@@ -1,3 +1,5 @@
+import Level.Level;
+import Level.Platform;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.window.VideoMode;
 import org.jsfml.window.event.Event;
@@ -7,7 +9,7 @@ import org.jsfml.window.event.Event;
  */
 public class main {
     public static void main(String[] args){
-        RenderWindow window = new RenderWindow();
+        /*RenderWindow window = new RenderWindow();
         window.create(new VideoMode(640, 480), "Super platformer !");
 
         window.setFramerateLimit(60);
@@ -40,6 +42,15 @@ public class main {
                 game.render();
             }
 
+        }*/
+
+        Level level = new Level(50,50);
+        for(int i = 0; i < level.getWidth();i++){
+            int j = 24 - i;
+            if(i >= 25)
+                j = i - 24;
+            level.setPlatformsMask(i,j, Platform.platform);
         }
+        level.save("test");
     }
 }
