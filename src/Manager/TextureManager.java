@@ -29,12 +29,13 @@ public class TextureManager {
         mobSheet = new Texture();
     }
 
-    public void loadTheme(Theme theme){
-        this.theme = theme;
-        String str = this.theme.name();
-
+    public static void loadTheme(Theme theme){
+        getInstance();
+        manager.theme = theme;
+        String str = manager.theme.name();
+        System.out.println("Loading textures...");
         try {
-            platformSheet.loadFromFile(Paths.get("res/spritesheet/" + str + "platformsheet.png"));
+            manager.platformSheet.loadFromFile(Paths.get("res/spritesheet/" + str + "platformsheet.png"));
             //entitySheet.loadFromFile(Paths.get("res/spritesheet/" + str + "entitysheet.png"));
             //mobSheet.loadFromFile(Paths.get("res/spritesheet/" + str + "mobsheet.png"));
         } catch (IOException e) {

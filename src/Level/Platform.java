@@ -118,4 +118,15 @@ public class Platform implements Serializable{
     public String getNom(){
         return nom;
     }
+
+    public boolean equals(Object o){
+        if(o == null){
+            return false;
+        }
+        if(!(o instanceof Platform)){
+            return false;
+        }
+        Platform p = (Platform) o;
+        return this.nom.equals(p.getNom());
+    }
 }

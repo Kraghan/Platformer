@@ -3,7 +3,6 @@ package Level;
 import Manager.SpriteManager;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Sprite;
-import org.jsfml.window.Window;
 
 import java.io.*;
 
@@ -47,16 +46,45 @@ public class Level implements Serializable{
     }
 
     public void render(RenderWindow window){
-        SpriteManager manager = SpriteManager.getInstance();
         for (int x = 0; x < width; x++){
             for (int y = 0; y < heigth; y++){
-                Sprite sprite = new Sprite();
                 if(platformsMask[x][y] != null) {
+                    Sprite sprite = null;
+
+                    boolean borderLeft = true, borderRight = true;
+
+                    if(isInBound(x-1,y) && platformsMask[x][y].equals(platformsMask[x-1][y])){
+                        borderLeft = false;
+                    }
+                    if(isInBound(x+1,y) && platformsMask[x][y].equals(platformsMask[x+1][y])){
+                        borderRight = false;
+                    }
+
                     if (platformsMask[x][y].getNom().equals("platform")) {
-                        sprite = manager.getSprite_platform();
+                        if(borderLeft && borderRight){
+                            sprite = SpriteManager.getInstance().getSprite_platform();
+                        }
+                        else if(borderLeft){
+                            sprite = SpriteManager.getInstance().getSprite_platform_angle();
+                        }
+                        else if(borderRight) {
+                            sprite = SpriteManager.getInstance().getSprite_platform_angle();
+                        }
+                        else{
+                            sprite = SpriteManager.getInstance().getSprite_platform_body();
+                        }
+                    }
+                    if (platformsMask[x][y].getNom().equals("breakableplatform")) {
+                        sprite = SpriteManager.getInstance().getSprite_platform();
+                    }
+                    if (platformsMask[x][y].getNom().equals("nonpermanentplatform")) {
+                        sprite = SpriteManager.getInstance().getSprite_platform();
+                    }
+                    if (platformsMask[x][y].getNom().equals("bouncyplatform")) {
+                        sprite = SpriteManager.getInstance().getSprite_platform();
                     }
                     if(sprite != null) {
-                        sprite.setPosition(64 * x, 64 * y);
+                        sprite.setPosition(x*64, y*64);
                         window.draw(sprite);
                     }
                 }
@@ -138,5 +166,9 @@ public class Level implements Serializable{
             }
         }
 
+    }
+
+    public boolean isInBound(int x, int y){
+        return x < width && x >= 0 && y < heigth && y >= 0;
     }
 }

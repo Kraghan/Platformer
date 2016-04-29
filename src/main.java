@@ -1,5 +1,8 @@
+import Manager.SpriteManager;
 import Manager.TextureManager;
+import org.jsfml.graphics.IntRect;
 import org.jsfml.graphics.RenderWindow;
+import org.jsfml.graphics.Sprite;
 import org.jsfml.window.ContextActivationException;
 import org.jsfml.window.VideoMode;
 import org.jsfml.window.event.Event;
@@ -13,19 +16,20 @@ public class main {
         RenderWindow window = new RenderWindow();
         window.create(new VideoMode(640, 480), "Super platformer !");
 
-        TextureManager manager = TextureManager.getInstance();
-        manager.loadTheme(Theme.TEMPLE);
+        TextureManager.loadTheme(Theme.TEMPLE);
         window.setFramerateLimit(60);
-        /*
+
+
         Level l = new Level(50,50);
         for(int x = 0; x < 50; x++){
-            int y = 24 - x;
+            int y = x/4;
             if(x >= 25)
-                y = x - 24;
+                y = x/4;
             l.setPlatformsMask(x,y,Platform.platform);
         }
         l.save("level0");
-*/
+
+
         Game game = new Game();
 
         while (window.isOpen()){
@@ -51,6 +55,7 @@ public class main {
             }
             // On est en jeu
             else if(game.getGameState() == GameState.RUNNING){
+                System.out.println("Game is running");
                 game.render(window);
             }
 

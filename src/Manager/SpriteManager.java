@@ -24,6 +24,7 @@ public class SpriteManager {
     public static SpriteManager getInstance(){
         if(manager == null){
             manager = new SpriteManager();
+            manager.load();
         }
         return manager;
     }
@@ -33,13 +34,14 @@ public class SpriteManager {
     }
 
     private void load(){
-        System.out.println("Sprites loaded");
+        System.out.println("Loading sprites...");
         TextureManager txManager = TextureManager.getInstance();
         sprite_platform = new Sprite(txManager.getPlatformSheet());
         sprite_platform.setTextureRect(new IntRect(0,0,64,64));
-        sprite_platform.setOrigin(32,32);
         sprite_platform_angle = new Sprite(txManager.getPlatformSheet());
+        sprite_platform_angle.setTextureRect(new IntRect(0,64,64,64));
         sprite_platform_body = new Sprite(txManager.getPlatformSheet());
+        sprite_platform_body.setTextureRect(new IntRect(0,128,64,64));
         sprite_platform_bouncy = new Sprite(txManager.getPlatformSheet());
         sprite_platform_bouncy_angle = new Sprite(txManager.getPlatformSheet());
         sprite_platform_bouncy_body = new Sprite(txManager.getPlatformSheet());
@@ -49,6 +51,7 @@ public class SpriteManager {
         sprite_platform_non_permanent = new Sprite(txManager.getPlatformSheet());
         sprite_platform_non_permanent_angle = new Sprite(txManager.getPlatformSheet());
         sprite_platform_non_permanent_body = new Sprite(txManager.getPlatformSheet());
+        System.out.println("Sprites loaded");
     }
 
     public Sprite getSprite_platform() {
