@@ -12,6 +12,7 @@ import java.io.*;
 public class Level implements Serializable{
     private int heigth = 0, width = 0, gravity = 10;
     private Platform[][] platformsMask = null;
+    private WallBackground[][] wallMask = null;
     private Theme theme;
 
     public Level(int heigth, int width){
@@ -19,6 +20,7 @@ public class Level implements Serializable{
         this.width = width;
 
         platformsMask = new Platform[width][heigth];
+        wallMask = new WallBackground[width][heigth];
     }
 
     public int getWidth() {
@@ -48,45 +50,27 @@ public class Level implements Serializable{
     public void render(RenderWindow window){
         for (int x = 0; x < width; x++){
             for (int y = 0; y < heigth; y++){
-                if(platformsMask[x][y] != null) {
-                    Sprite sprite = null;
+                if(wallMask[x][y] != null) {
+                    /*boolean borderLeft = true, borderRight = true;
 
-                    boolean borderLeft = true, borderRight = true;
-
-                    if(isInBound(x-1,y) && platformsMask[x][y].equals(platformsMask[x-1][y])){
+                    if (isInBound(x - 1, y) && platformsMask[x][y].equals(platformsMask[x - 1][y])) {
                         borderLeft = false;
                     }
-                    if(isInBound(x+1,y) && platformsMask[x][y].equals(platformsMask[x+1][y])){
+                    if (isInBound(x + 1, y) && platformsMask[x][y].equals(platformsMask[x + 1][y])) {
+                        borderRight = false;
+                    }*/
+                    wallMask[x][y].render(window,x,y);
+                }
+                if(platformsMask[x][y] != null) {
+                    boolean borderLeft = true, borderRight = true;
+
+                    if (isInBound(x - 1, y) && platformsMask[x][y].equals(platformsMask[x - 1][y])) {
+                        borderLeft = false;
+                    }
+                    if (isInBound(x + 1, y) && platformsMask[x][y].equals(platformsMask[x + 1][y])) {
                         borderRight = false;
                     }
-
-                    if (platformsMask[x][y].getNom().equals("platform")) {
-                        if(borderLeft && borderRight){
-                            sprite = SpriteManager.getInstance().getSprite_platform();
-                        }
-                        else if(borderLeft){
-                            sprite = SpriteManager.getInstance().getSprite_platform_angle();
-                        }
-                        else if(borderRight) {
-                            sprite = SpriteManager.getInstance().getSprite_platform_angle();
-                        }
-                        else{
-                            sprite = SpriteManager.getInstance().getSprite_platform_body();
-                        }
-                    }
-                    if (platformsMask[x][y].getNom().equals("breakableplatform")) {
-                        sprite = SpriteManager.getInstance().getSprite_platform();
-                    }
-                    if (platformsMask[x][y].getNom().equals("nonpermanentplatform")) {
-                        sprite = SpriteManager.getInstance().getSprite_platform();
-                    }
-                    if (platformsMask[x][y].getNom().equals("bouncyplatform")) {
-                        sprite = SpriteManager.getInstance().getSprite_platform();
-                    }
-                    if(sprite != null) {
-                        sprite.setPosition(x*64, y*64);
-                        window.draw(sprite);
-                    }
+                    platformsMask[x][y].render(window,x,y,borderLeft,borderRight);
                 }
             }
         }
@@ -170,5 +154,9 @@ public class Level implements Serializable{
 
     public boolean isInBound(int x, int y){
         return x < width && x >= 0 && y < heigth && y >= 0;
+    }
+
+    public void setWallMask(int x, int y, WallBackground wall) {
+        this.wallMask[x][y] = wall;
     }
 }

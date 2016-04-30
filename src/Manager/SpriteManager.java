@@ -19,12 +19,14 @@ public class SpriteManager {
     private Sprite sprite_platform_bouncy;
     private Sprite sprite_platform_bouncy_angle;
     private Sprite sprite_platform_bouncy_body;
+    private Sprite sprite_wall;
+    private Sprite sprite_wall_floor;
+    private Sprite sprite_wall_window;
     private static SpriteManager manager = null;
 
     public static SpriteManager getInstance(){
         if(manager == null){
             manager = new SpriteManager();
-            manager.load();
         }
         return manager;
     }
@@ -35,6 +37,7 @@ public class SpriteManager {
 
     private void load(){
         System.out.println("Loading sprites...");
+        // Sprite platform
         TextureManager txManager = TextureManager.getInstance();
         sprite_platform = new Sprite(txManager.getPlatformSheet());
         sprite_platform.setTextureRect(new IntRect(0,0,64,64));
@@ -43,14 +46,31 @@ public class SpriteManager {
         sprite_platform_body = new Sprite(txManager.getPlatformSheet());
         sprite_platform_body.setTextureRect(new IntRect(0,128,64,64));
         sprite_platform_bouncy = new Sprite(txManager.getPlatformSheet());
+        sprite_platform_bouncy.setTextureRect(new IntRect(192,0,64,64));
         sprite_platform_bouncy_angle = new Sprite(txManager.getPlatformSheet());
+        sprite_platform_bouncy_angle.setTextureRect(new IntRect(192,64,64,64));
         sprite_platform_bouncy_body = new Sprite(txManager.getPlatformSheet());
+        sprite_platform_bouncy_body.setTextureRect(new IntRect(192,128,64,64));
         sprite_platform_breakable = new Sprite(txManager.getPlatformSheet());
+        sprite_platform_breakable.setTextureRect(new IntRect(128,0,64,64));
         sprite_platform_breakable_angle = new Sprite(txManager.getPlatformSheet());
+        sprite_platform_breakable_angle.setTextureRect(new IntRect(128,64,64,64));
         sprite_platform_breakable_body = new Sprite(txManager.getPlatformSheet());
+        sprite_platform_breakable_body.setTextureRect(new IntRect(128,128,64,64));
         sprite_platform_non_permanent = new Sprite(txManager.getPlatformSheet());
+        sprite_platform_non_permanent.setTextureRect(new IntRect(64,0,64,64));
         sprite_platform_non_permanent_angle = new Sprite(txManager.getPlatformSheet());
+        sprite_platform_non_permanent_angle.setTextureRect(new IntRect(64,64,64,64));
         sprite_platform_non_permanent_body = new Sprite(txManager.getPlatformSheet());
+        sprite_platform_non_permanent_body.setTextureRect(new IntRect(64,128,64,64));
+
+        // Sprite wall
+        sprite_wall = new Sprite(txManager.getWallSheet());
+        sprite_wall.setTextureRect(new IntRect(0,0,64,64));
+        sprite_wall_floor = new Sprite(txManager.getWallSheet());
+        sprite_wall_floor.setTextureRect(new IntRect(64,0,64,64));
+        sprite_wall_window = new Sprite(txManager.getWallSheet());
+        sprite_wall_window.setTextureRect(new IntRect(128,0,64,64));
         System.out.println("Sprites loaded");
     }
 
@@ -100,5 +120,17 @@ public class SpriteManager {
 
     public Sprite getSprite_platform_bouncy_body() {
         return sprite_platform_bouncy_body;
+    }
+
+    public Sprite getSprite_wall() {
+        return sprite_wall;
+    }
+
+    public Sprite getSprite_wall_floor() {
+        return sprite_wall_floor;
+    }
+
+    public Sprite getSprite_wall_window() {
+        return sprite_wall_window;
     }
 }

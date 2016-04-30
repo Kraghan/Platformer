@@ -13,6 +13,9 @@ public class TextureManager {
     private Texture platformSheet;
     private Texture entitySheet;
     private Texture mobSheet;
+    private Texture wallSheet;
+    private Texture background;
+
     private Theme theme;
     private static TextureManager manager = null;
 
@@ -27,6 +30,8 @@ public class TextureManager {
         platformSheet = new Texture();
         entitySheet = new Texture();
         mobSheet = new Texture();
+        wallSheet = new Texture();
+        background = new Texture();
     }
 
     public static void loadTheme(Theme theme){
@@ -38,6 +43,8 @@ public class TextureManager {
             manager.platformSheet.loadFromFile(Paths.get("res/spritesheet/" + str + "platformsheet.png"));
             //entitySheet.loadFromFile(Paths.get("res/spritesheet/" + str + "entitysheet.png"));
             //mobSheet.loadFromFile(Paths.get("res/spritesheet/" + str + "mobsheet.png"));
+            manager.wallSheet.loadFromFile(Paths.get("res/spritesheet/" + str + "wallsheet.png"));
+            //manager.background.loadFromFile(Paths.get("res/spritesheet/" + str + "background.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -55,5 +62,13 @@ public class TextureManager {
 
     public Texture getMobSheet() {
         return mobSheet;
+    }
+
+    public Texture getWallSheet() {
+        return wallSheet;
+    }
+
+    public Texture getBackground() {
+        return background;
     }
 }

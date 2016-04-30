@@ -1,5 +1,9 @@
 package Level;
 
+import Manager.SpriteManager;
+import org.jsfml.graphics.RenderWindow;
+import org.jsfml.graphics.Sprite;
+
 import java.io.Serializable;
 
 /**
@@ -128,5 +132,85 @@ public class Platform implements Serializable{
         }
         Platform p = (Platform) o;
         return this.nom.equals(p.getNom());
+    }
+
+    public void render(RenderWindow window, int x, int y, boolean borderLeft, boolean borderRight){
+
+        Sprite sprite = null;
+
+
+
+        if (getNom().equals("platform")) {
+            if(borderLeft && borderRight){
+                sprite = SpriteManager.getInstance().getSprite_platform();
+            }
+            else if(borderLeft){
+                sprite = SpriteManager.getInstance().getSprite_platform_angle();
+            }
+            else if(borderRight) {
+                sprite = SpriteManager.getInstance().getSprite_platform_angle();
+                sprite.setOrigin(64,0);
+                sprite.scale(-1.f,1.f);
+            }
+            else{
+                sprite = SpriteManager.getInstance().getSprite_platform_body();
+            }
+        }
+        if (getNom().equals("breakableplatform")) {
+            if(borderLeft && borderRight){
+                sprite = SpriteManager.getInstance().getSprite_platform_breakable();
+            }
+            else if(borderLeft){
+                sprite = SpriteManager.getInstance().getSprite_platform_breakable_angle();
+            }
+            else if(borderRight) {
+                sprite = SpriteManager.getInstance().getSprite_platform_breakable_angle();
+                sprite.setOrigin(64,0);
+                sprite.scale(-1.f,1.f);
+            }
+            else{
+                sprite = SpriteManager.getInstance().getSprite_platform_breakable_body();
+            }
+        }
+        if (getNom().equals("nonpermanentplatform")) {
+            if(borderLeft && borderRight){
+                sprite = SpriteManager.getInstance().getSprite_platform_non_permanent();
+            }
+            else if(borderLeft){
+                sprite = SpriteManager.getInstance().getSprite_platform_non_permanent_angle();
+            }
+            else if(borderRight) {
+                sprite = SpriteManager.getInstance().getSprite_platform_non_permanent_angle();
+                sprite.setOrigin(64,0);
+                sprite.scale(-1.f,1.f);
+            }
+            else{
+                sprite = SpriteManager.getInstance().getSprite_platform_non_permanent_body();
+            }
+        }
+        if (getNom().equals("bouncyplatform")) {
+            if(borderLeft && borderRight){
+                sprite = SpriteManager.getInstance().getSprite_platform_bouncy();
+            }
+            else if(borderLeft){
+                sprite = SpriteManager.getInstance().getSprite_platform_bouncy_angle();
+            }
+            else if(borderRight) {
+                sprite = SpriteManager.getInstance().getSprite_platform_bouncy_angle();
+                sprite.setOrigin(64,0);
+                sprite.scale(-1.f,1.f);
+            }
+            else{
+                sprite = SpriteManager.getInstance().getSprite_platform_bouncy_body();
+            }
+        }
+        if(sprite != null) {
+            sprite.setPosition(x*64, y*64);
+            window.draw(sprite);
+            if(borderRight) {
+                sprite.scale(-1.f, 1.f);
+                sprite.setOrigin(0,0);
+            }
+        }
     }
 }

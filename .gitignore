@@ -1,4 +1,4 @@
-/out
-Platformer.iml
-Platformer.ipr
-Platformer.iws
+/out/*
+/Platformer.iml
+/Platformer.ipr
+/Platformer.iws
