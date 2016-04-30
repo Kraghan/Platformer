@@ -6,9 +6,6 @@ import org.jsfml.graphics.Texture;
 import java.io.IOException;
 import java.nio.file.Paths;
 
-/**
- * Created by Kraghan on 26/04/2016.
- */
 public class TextureManager {
     private Texture platformSheet;
     private Texture entitySheet;

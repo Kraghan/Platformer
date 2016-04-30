@@ -6,9 +6,6 @@ import org.jsfml.graphics.Sprite;
 
 import java.io.Serializable;
 
-/**
- * Created by madjo on 25/04/2016.
- */
 public class Platform implements Serializable{
     protected boolean isSolid = false,isBreakable = false,isBouncy = false,isPermanent = true;
     protected int health = 0, timeBeforeFall = 0, bouncyness = 0;

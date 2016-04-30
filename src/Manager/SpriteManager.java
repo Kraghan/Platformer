@@ -3,9 +3,6 @@ package Manager;
 import org.jsfml.graphics.IntRect;
 import org.jsfml.graphics.Sprite;
 
-/**
- * Created by Kraghan on 26/04/2016.
- */
 public class SpriteManager {
     private Sprite sprite_platform;
     private Sprite sprite_platform_angle;

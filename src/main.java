@@ -9,9 +9,6 @@ import Level.*;
 import org.jsfml.window.event.KeyEvent;
 import org.jsfml.window.event.SizeEvent;
 
-/**
- * Created by madjo on 25/04/2016.
- */
 public class main {
     public static void main(String[] args){
         Vector2f centreImage = new Vector2f(0,0);

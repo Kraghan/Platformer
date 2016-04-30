@@ -1,12 +1,7 @@
 import Entity.Player;
 import Level.Level;
-import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RenderWindow;
-import org.jsfml.window.Window;
 
-/**
- * Created by madjo on 25/04/2016.
- */
 public class Game {
     Level level = null;
     Player player = null;

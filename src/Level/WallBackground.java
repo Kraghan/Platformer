@@ -6,9 +6,6 @@ import org.jsfml.graphics.Sprite;
 
 import java.io.Serializable;
 
-/**
- * Created by Kraghan on 29/04/2016.
- */
 public class WallBackground implements Serializable{
     private String name;
     private boolean luminous = false, animated = false;
@@ -18,7 +15,7 @@ public class WallBackground implements Serializable{
     public static WallBackground window = new WallBackground("window",true,10,false,1);
 
 
-    public WallBackground(String name, boolean luminous, int radius, boolean animated, int nbSprite){
+    private WallBackground(String name, boolean luminous, int radius, boolean animated, int nbSprite){
         this.name = name;
         this.luminous = luminous;
         this.radius = radius;

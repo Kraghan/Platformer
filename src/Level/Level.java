@@ -1,14 +1,9 @@
 package Level;
 
-import Manager.SpriteManager;
 import org.jsfml.graphics.RenderWindow;
-import org.jsfml.graphics.Sprite;
 
 import java.io.*;
 
-/**
- * Created by madjo on 25/04/2016.
- */
 public class Level implements Serializable{
     private int heigth = 0, width = 0, gravity = 10;
     private Platform[][] platformsMask = null;
