@@ -7,6 +7,6 @@ public class LevelEditor {
 
     public static void main(String[] args){
         //Editorframe frame = new Editorframe();
-        FileBrowser frame = new FileBrowser();
+        FileBrowser frame = new FileBrowser(false);
     }
 }
