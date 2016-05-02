@@ -115,6 +115,33 @@ public class Level implements Serializable{
         return level;
     }
 
+    public static Level load(File f){
+        FileInputStream fis = null;
+        ObjectInputStream ois = null;
+        Level level = null;
+        try {
+            fis = new FileInputStream(f);
+            ois = new ObjectInputStream(fis);
+        } catch (IOException e) {
+            System.err.println("Error : can't create inputstream");
+            e.printStackTrace();
+        }
+        finally {
+            if(ois != null){
+                try {
+                    level = (Level) ois.readObject();
+                    ois.close();
+                } catch (IOException e) {
+                    System.err.println("Error : load fails ");
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return level;
+    }
+
     public void save(String file){
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;

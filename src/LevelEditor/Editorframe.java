@@ -3,6 +3,8 @@ package LevelEditor;
 import javax.management.JMException;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by Kraghan on 01/05/2016.
@@ -12,10 +14,12 @@ public class Editorframe extends JFrame {
     JSplitPane splitPane;
     JScrollPane panelDroit, panelGauche;
     JMenuBar menuBar;
+    LevelEditor editor = null;
 
-    public Editorframe() {
+    public Editorframe(LevelEditor editor) {
 
         initWidget();
+        this.editor = editor;
 
         setSize(1360,768);
         setMinimumSize(new Dimension(400,200));
@@ -31,6 +35,15 @@ public class Editorframe extends JFrame {
         JMenuItem enregistrerSous = new JMenuItem("Save as");
         JMenuItem enregistrer = new JMenuItem("Save");
         JMenuItem charger = new JMenuItem("Load");
+
+        nouveau.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane d = new JOptionPane();
+                d.showMessageDialog(panelDroit, "File name must be only number","Error",JOptionPane.);
+            }
+        });
+
         fichier.add(nouveau);
         fichier.add(charger);
         fichier.add(enregistrerSous);
@@ -51,5 +64,10 @@ public class Editorframe extends JFrame {
         setJMenuBar(menuBar);
         setContentPane(splitPane);
 
+    }
+
+    public void initListener(){
+
+        FileBrowser frame = new FileBrowser(false,editor);
     }
 }

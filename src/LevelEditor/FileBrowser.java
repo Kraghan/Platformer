@@ -1,5 +1,6 @@
 package LevelEditor;
 
+import Level.Level;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -17,8 +18,8 @@ public class FileBrowser extends JFrame {
     private JButton action, supprimer, annuler;
     private boolean save;
 
-    public FileBrowser(boolean save){
-        initWidget(save);
+    public FileBrowser(boolean save,LevelEditor le){
+        initWidget(save,le);
         this.save = save;
         setSize(1020, 576);
         setResizable(false);
@@ -29,7 +30,7 @@ public class FileBrowser extends JFrame {
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
 
-    public void initWidget(boolean save){
+    public void initWidget(boolean save, LevelEditor le){
         panel = new JPanel(null);
 
         File dir = new File("res/levels/");
@@ -77,37 +78,15 @@ public class FileBrowser extends JFrame {
                 if(save){
                     String file = filename.getText();
                     if(file.matches("^[0-9]+$")) {
-                        FileOutputStream fos = null;
-                        ObjectOutputStream oos = null;
-                        File f = new File("res/levels/" + file + ".ser");
-                        try {
-                            f.createNewFile();
-                        } catch (IOException e) {
-                            System.err.println("Error : can't create " + file + ".ser");
-                            e.printStackTrace();
-                        }
-                        try {
-                            fos = new FileOutputStream(f);
-                            oos = new ObjectOutputStream(fos);
-                        } catch (FileNotFoundException e) {
-                            System.err.println("Error : can't open " + file + ".ser");
-                        } catch (IOException e) {
-                            System.err.println("Error : can't create outputstream");
-                        } finally {
-                            if (oos != null) {
-                                try {
-                                    oos.writeObject(this);
-                                    oos.flush();
-                                    oos.close();
-                                } catch (IOException e) {
-                                    System.err.println("Error : save fails ");
-                                }
-                            }
-                        }
+                        le.save(file+".res");
+                    }
+                    else{
+                        JOptionPane d = new JOptionPane();
+                        d.showMessageDialog(panel, "File name must be only number","Error",JOptionPane.ERROR_MESSAGE);
                     }
                 }
                 else{
-                    jlist.getSelectedValue();
+                    le.load(jlist.getSelectedValue());
                 }
             }
         });
