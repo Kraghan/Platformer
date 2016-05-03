@@ -17,12 +17,19 @@ public class FileBrowser extends JFrame {
     private JTextField filename;
     private JButton action, supprimer, annuler;
     private boolean save;
+    private LevelEditor editor;
 
     public FileBrowser(boolean save,LevelEditor le){
-        initWidget(save,le);
+        editor = le;
+        editor.lock();
+
+        initWidget(save);
         this.save = save;
         setSize(1020, 576);
         setResizable(false);
+        setAlwaysOnTop(true);
+        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        setLocation(gd.getDisplayMode().getWidth()/3,gd.getDisplayMode().getHeight()/4);
         setVisible(true);
         setTitle("Load file");
         if(save)
@@ -30,7 +37,7 @@ public class FileBrowser extends JFrame {
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
 
-    public void initWidget(boolean save, LevelEditor le){
+    public void initWidget(boolean save){
         panel = new JPanel(null);
 
         File dir = new File("res/levels/");
@@ -78,7 +85,8 @@ public class FileBrowser extends JFrame {
                 if(save){
                     String file = filename.getText();
                     if(file.matches("^[0-9]+$")) {
-                        le.save(file+".res");
+                        editor.save(file+".res");
+                        dispose();
                     }
                     else{
                         JOptionPane d = new JOptionPane();
@@ -86,7 +94,7 @@ public class FileBrowser extends JFrame {
                     }
                 }
                 else{
-                    le.load(jlist.getSelectedValue());
+                    editor.load(jlist.getSelectedValue());
                 }
             }
         });
@@ -107,6 +115,11 @@ public class FileBrowser extends JFrame {
         panel.add(annuler);
 
         setContentPane(panel);
+    }
+
+    public void dispose(){
+        editor.unlock();
+        super.dispose();
     }
 
 

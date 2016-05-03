@@ -15,6 +15,7 @@ public class Editorframe extends JFrame {
     JScrollPane panelDroit, panelGauche;
     JMenuBar menuBar;
     LevelEditor editor = null;
+    DimensionSelector ds;
 
     public Editorframe(LevelEditor editor) {
 
@@ -39,8 +40,7 @@ public class Editorframe extends JFrame {
         nouveau.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane d = new JOptionPane();
-                d.showMessageDialog(panelDroit, "File name must be only number","Error",JOptionPane.);
+                 ds = new DimensionSelector(editor);
             }
         });
 
@@ -68,6 +68,5 @@ public class Editorframe extends JFrame {
 
     public void initListener(){
 
-        FileBrowser frame = new FileBrowser(false,editor);
     }
 }
