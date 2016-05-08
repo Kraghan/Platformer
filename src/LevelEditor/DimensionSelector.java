@@ -45,6 +45,7 @@ public class DimensionSelector extends JFrame {
                     int w = Integer.parseInt(width.getText());
 
                     editor.createNewLevel(w, h);
+                    editor.setLevelname(null);
                     dispose();
                 }
                 else{

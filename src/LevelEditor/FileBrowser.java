@@ -85,7 +85,7 @@ public class FileBrowser extends JFrame {
                 if(save){
                     String file = filename.getText();
                     if(file.matches("^[0-9]+$")) {
-                        editor.save(file+".res");
+                        editor.save("level"+file+".ser");
                         dispose();
                     }
                     else{
@@ -95,6 +95,7 @@ public class FileBrowser extends JFrame {
                 }
                 else{
                     editor.load(jlist.getSelectedValue());
+                    dispose();
                 }
             }
         });

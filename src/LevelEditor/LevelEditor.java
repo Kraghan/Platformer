@@ -8,6 +8,7 @@ import Level.Level;
 public class LevelEditor {
 
     private Level level = null;
+    private String levelname;
     private boolean enable;
     Editorframe frame;
 
@@ -26,7 +27,18 @@ public class LevelEditor {
     }
 
     public void save(String name){
+        levelname = name;
         level.save(name);
+    }
+
+    public boolean save(){
+        if(levelname == null){
+            return false;
+        }
+        else{
+            save(levelname);
+            return true;
+        }
     }
 
     public void createNewLevel(int x, int y){
@@ -42,5 +54,13 @@ public class LevelEditor {
     public void unlock(){
         frame.setEnabled(true);
         System.out.println("Unlocked");
+    }
+
+    public void setLevelname(String s){
+        levelname = s;
+    }
+
+    public Level getLevel(){
+        return level;
     }
 }

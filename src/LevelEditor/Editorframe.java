@@ -23,6 +23,7 @@ public class Editorframe extends JFrame {
         this.editor = editor;
 
         setSize(1360,768);
+        setTitle("Level editor");
         setMinimumSize(new Dimension(400,200));
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -41,6 +42,48 @@ public class Editorframe extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                  ds = new DimensionSelector(editor);
+            }
+        });
+
+        enregistrer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(editor.getLevel() == null){
+                    JOptionPane d = new JOptionPane();
+                    d.showMessageDialog(splitPane, "No level edited","Error",JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                if(!editor.save()){
+                    FileBrowser fb = new FileBrowser(true,editor);
+                }
+            }
+        });
+
+        enregistrerSous.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(editor.getLevel() == null){
+                    JOptionPane d = new JOptionPane();
+                    d.showMessageDialog(splitPane, "No level edited","Error",JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                FileBrowser fb = new FileBrowser(true,editor);
+            }
+        });
+
+        charger.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(editor.getLevel() != null){
+                    JOptionPane d = new JOptionPane();
+                    String[] option = {"Yes","No"};
+                    int response = d.showOptionDialog(splitPane, "Are you sure to load a new level ? All unsaved changes will be lost","Warning ! ",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,option,option[0]);
+                    if(response == JOptionPane.YES_OPTION){
+                        FileBrowser fb = new FileBrowser(false,editor);
+                    }
+                    return;
+                }
+                FileBrowser fb = new FileBrowser(false,editor);
             }
         });
 
