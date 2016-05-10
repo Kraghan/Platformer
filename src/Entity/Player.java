@@ -14,7 +14,7 @@ public class Player extends Mob {
     long time = -1;
 
     public Player(Vector2i coord) {
-        super(coord,3,10);
+        super(coord,3,25);
     }
 
     public void render(RenderWindow window){

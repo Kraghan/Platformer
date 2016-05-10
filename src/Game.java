@@ -47,9 +47,15 @@ public class Game {
         Player player = new Player(new Vector2i(10,0));
         Level level = Level.load(0);
         GameState state = GameState.RUNNING;
+        window.setKeyRepeatEnabled(false);
+
+        boolean leftPressed=false,rightPressed=false,jumpPressed=false;
 
         while (window.isOpen()) {
+            Mouvement playerMovement = Mouvement.NONE;
+
             for (Event event : window.pollEvents()) {
+
                 if (event.type == Event.Type.CLOSED) {
                     window.close();
                 } else if (event.type == Event.Type.RESIZED) {
@@ -59,22 +65,62 @@ public class Game {
                     KeyEvent e = event.asKeyEvent();
                     if (e.key == Keyboard.Key.UP || e.key == Keyboard.Key.Z) {
                         //centreImage = new Vector2f(centreImage.x, centreImage.y - 10);
-                    } else if (e.key == Keyboard.Key.DOWN || e.key == Keyboard.Key.S) {
-                        //centreImage = new Vector2f(centreImage.x, centreImage.y + 10);
-                    } else if (e.key == Keyboard.Key.RIGHT || e.key == Keyboard.Key.D) {
-                        //centreImage = new Vector2f(centreImage.x + 10, centreImage.y);
-                        player.move(Mouvement.RIGHT);
-                    } else if (e.key == Keyboard.Key.LEFT || e.key == Keyboard.Key.Q) {
-                        player.move(Mouvement.LEFT);
-                        //centreImage = new Vector2f(centreImage.x - 10, centreImage.y);
-                    } else if (e.key == Keyboard.Key.SPACE) {
-                        player.jump(level.getGravity());
                     }
-                    centreImage = new Vector2f(player.getCoord().x,player.getCoord().y);
-                } else if (event.type == Event.Type.JOYSTICK_BUTTON_PRESSED) {
+                    if (e.key == Keyboard.Key.DOWN || e.key == Keyboard.Key.S) {
+                        //centreImage = new Vector2f(centreImage.x, centreImage.y + 10);
+                    }
+                    if (e.key == Keyboard.Key.RIGHT || e.key == Keyboard.Key.D) {
+                        //centreImage = new Vector2f(centreImage.x + 10, centreImage.y);
+                        rightPressed = true;
+                    }
+                    if (e.key == Keyboard.Key.LEFT || e.key == Keyboard.Key.Q) {
+                        //centreImage = new Vector2f(centreImage.x - 10, centreImage.y);
+                        leftPressed = true;
+                    }
+                    if (e.key == Keyboard.Key.SPACE) {
+                        jumpPressed = true;
+                    }
+                } else if (event.type == Event.Type.KEY_RELEASED) {
+                    KeyEvent e = event.asKeyEvent();
+                    if (e.key == Keyboard.Key.UP || e.key == Keyboard.Key.Z) {
+                        //centreImage = new Vector2f(centreImage.x, centreImage.y - 10);
+                    }
+                    if (e.key == Keyboard.Key.DOWN || e.key == Keyboard.Key.S) {
+                        //centreImage = new Vector2f(centreImage.x, centreImage.y + 10);
+                    }
+                    if (e.key == Keyboard.Key.RIGHT || e.key == Keyboard.Key.D) {
+                        //centreImage = new Vector2f(centreImage.x + 10, centreImage.y);
+                        rightPressed = false;
+                    }
+                    if (e.key == Keyboard.Key.LEFT || e.key == Keyboard.Key.Q) {
+                        //centreImage = new Vector2f(centreImage.x - 10, centreImage.y);
+                        leftPressed = false;
+                    }
+                    if (e.key == Keyboard.Key.SPACE) {
+                        jumpPressed = false;
+                    }
+                }else if (event.type == Event.Type.JOYSTICK_BUTTON_PRESSED) {
 
                 }
             }
+
+            if(rightPressed)
+                playerMovement = Mouvement.RIGHT;
+            else if(leftPressed)
+                playerMovement = Mouvement.LEFT;
+            else
+                playerMovement = Mouvement.NONE;
+            if(jumpPressed)
+                player.jump(level.getGravity());
+
+            player.calculVitesse(playerMovement);
+            if(player.isJumping()){
+                player.jump(level.getGravity());
+            }else{
+                player.move();
+            }
+
+            centreImage = new Vector2f(player.getCoord().x,player.getCoord().y);
 
             // On est en menu
             if (state == GameState.MAIN_MENU) {
