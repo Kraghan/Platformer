@@ -1,16 +1,23 @@
+import Entity.Mob;
+import Entity.Mouvement;
 import Entity.Player;
 import Level.*;
 import Manager.TextureManager;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.View;
 import org.jsfml.system.Vector2f;
+import org.jsfml.system.Vector2i;
 import org.jsfml.window.Keyboard;
 import org.jsfml.window.VideoMode;
 import org.jsfml.window.event.Event;
 import org.jsfml.window.event.KeyEvent;
 import org.jsfml.window.event.SizeEvent;
 
+import java.util.ArrayList;
+
 public class Game {
+
+    Player player = null;
 
     public static void main(String[] args) {
 
@@ -37,8 +44,8 @@ public class Game {
         }
         l.save("level0");
 
+        Player player = new Player(new Vector2i(10,0));
         Level level = Level.load(0);
-        Player player = null;
         GameState state = GameState.RUNNING;
 
         while (window.isOpen()) {
@@ -51,16 +58,19 @@ public class Game {
                 } else if (event.type == Event.Type.KEY_PRESSED) {
                     KeyEvent e = event.asKeyEvent();
                     if (e.key == Keyboard.Key.UP || e.key == Keyboard.Key.Z) {
-                        centreImage = new Vector2f(centreImage.x, centreImage.y - 10);
+                        //centreImage = new Vector2f(centreImage.x, centreImage.y - 10);
                     } else if (e.key == Keyboard.Key.DOWN || e.key == Keyboard.Key.S) {
-                        centreImage = new Vector2f(centreImage.x, centreImage.y + 10);
+                        //centreImage = new Vector2f(centreImage.x, centreImage.y + 10);
                     } else if (e.key == Keyboard.Key.RIGHT || e.key == Keyboard.Key.D) {
-                        centreImage = new Vector2f(centreImage.x + 10, centreImage.y);
+                        //centreImage = new Vector2f(centreImage.x + 10, centreImage.y);
+                        player.move(Mouvement.RIGHT);
                     } else if (e.key == Keyboard.Key.LEFT || e.key == Keyboard.Key.Q) {
-                        centreImage = new Vector2f(centreImage.x - 10, centreImage.y);
+                        player.move(Mouvement.LEFT);
+                        //centreImage = new Vector2f(centreImage.x - 10, centreImage.y);
                     } else if (e.key == Keyboard.Key.SPACE) {
-
+                        player.jump(level.getGravity());
                     }
+                    centreImage = new Vector2f(player.getCoord().x,player.getCoord().y);
                 } else if (event.type == Event.Type.JOYSTICK_BUTTON_PRESSED) {
 
                 }
@@ -76,7 +86,7 @@ public class Game {
             }
             // On est en jeu
             else if (state == GameState.RUNNING) {
-                render(window, level);
+                render(window, level, player);
             }
             view.setCenter(centreImage);
             view.setSize(tailleImage);
@@ -92,9 +102,10 @@ public class Game {
 
     }
 
-    public static void render(RenderWindow window, Level level){
+    public static void render(RenderWindow window, Level level, Player player){
         window.clear();
         level.render(window);
+        player.render(window);
         window.display();
     }
 }

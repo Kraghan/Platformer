@@ -1,8 +1,10 @@
 package Manager;
 
 import Level.Theme;
+import com.sun.corba.se.impl.orb.ParserTable;
 import org.jsfml.graphics.Texture;
 
+import javax.xml.soap.Text;
 import java.io.IOException;
 import java.nio.file.Paths;
 
@@ -12,6 +14,7 @@ public class TextureManager {
     private Texture mobSheet;
     private Texture wallSheet;
     private Texture background;
+    private Texture playerSheet;
 
     private Theme theme;
     private static TextureManager manager = null;
@@ -29,6 +32,7 @@ public class TextureManager {
         mobSheet = new Texture();
         wallSheet = new Texture();
         background = new Texture();
+        playerSheet = new Texture();
     }
 
     public static void loadTheme(Theme theme){
@@ -42,6 +46,7 @@ public class TextureManager {
             //mobSheet.loadFromFile(Paths.get("res/spritesheet/" + str + "mobsheet.png"));
             manager.wallSheet.loadFromFile(Paths.get("res/spritesheet/" + str + "wallsheet.png"));
             //manager.background.loadFromFile(Paths.get("res/spritesheet/" + str + "background.png"));
+            manager.playerSheet.loadFromFile(Paths.get("res/spritesheet/playersheet.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -67,5 +72,9 @@ public class TextureManager {
 
     public Texture getBackground() {
         return background;
+    }
+
+    public Texture getPlayerSheet(){
+        return playerSheet;
     }
 }

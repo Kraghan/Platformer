@@ -1,14 +1,17 @@
 package Level;
 
+import Entity.Mob;
 import org.jsfml.graphics.RenderWindow;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class Level implements Serializable{
     private int heigth = 0, width = 0, gravity = 10;
     private Platform[][] platformsMask = null;
     private WallBackground[][] wallMask = null;
     private Theme theme;
+    ArrayList<Mob> mobs = null;
 
     public Level(int heigth, int width){
         this.heigth = heigth;
@@ -16,6 +19,8 @@ public class Level implements Serializable{
 
         platformsMask = new Platform[width][heigth];
         wallMask = new WallBackground[width][heigth];
+
+        mobs = new ArrayList<>();
     }
 
     public int getWidth() {

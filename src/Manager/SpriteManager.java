@@ -19,6 +19,9 @@ public class SpriteManager {
     private Sprite sprite_wall;
     private Sprite sprite_wall_floor;
     private Sprite sprite_wall_window;
+    private Sprite sprite_player;
+    private Sprite sprite_player_walk;
+    private Sprite sprite_player_walk2;
     private static SpriteManager manager = null;
 
     public static SpriteManager getInstance(){
@@ -60,6 +63,8 @@ public class SpriteManager {
         sprite_platform_non_permanent_angle.setTextureRect(new IntRect(64,64,64,64));
         sprite_platform_non_permanent_body = new Sprite(txManager.getPlatformSheet());
         sprite_platform_non_permanent_body.setTextureRect(new IntRect(64,128,64,64));
+        sprite_player = new Sprite(txManager.getPlayerSheet());
+        sprite_player.setTextureRect(new IntRect(0,0,64,64));
 
         // Sprite wall
         sprite_wall = new Sprite(txManager.getWallSheet());
@@ -129,5 +134,17 @@ public class SpriteManager {
 
     public Sprite getSprite_wall_window() {
         return sprite_wall_window;
+    }
+
+    public Sprite getSprite_player() {
+        return sprite_player;
+    }
+
+    public Sprite getSprite_player_walk() {
+        return sprite_player_walk;
+    }
+
+    public Sprite getSprite_player_walk2() {
+        return sprite_player_walk2;
     }
 }
