@@ -17,40 +17,64 @@ public class Mob extends Entity {
         this.vitesseMax = vitesseMax;
     }
 
-    public void calculVitesse(Mouvement move){
+    public void calculVitesse(boolean left, boolean right,boolean run){
         if(tempsDebutMouvement == -1)
             tempsDebutMouvement = System.currentTimeMillis()/250;
 
-        int x = (int)(System.currentTimeMillis()/250 - tempsDebutMouvement );
-        if(move == Mouvement.RIGHT){
-            if(vitesse >= 0)
-                vitesse = (x*x)*0.3+5;
-            else {
-                vitesse = vitesse - vitesse/10;
+        if(vitesse >= -1 && vitesse <= 1){
+            if(left && right){
+                vitesse = 0;
             }
-            if(vitesse > vitesseMax){
-                vitesse = vitesseMax;
+            else if (left){
+                tempsDebutMouvement = System.currentTimeMillis()/250;
+                int x = (int)(System.currentTimeMillis()/250 - tempsDebutMouvement );
+                vitesse = -(x*x)*0.35-4;
             }
+            else if (right){
+                tempsDebutMouvement = System.currentTimeMillis()/250;
+                int x = (int)(System.currentTimeMillis()/250 - tempsDebutMouvement );
+                vitesse = (x*x)*0.35+4;
+            }
+
         }
-        else if(move == Mouvement.LEFT){
-            if(vitesse <= 0)
-                vitesse = -(x*x)*0.3-5;
-            else {
+        else if (vitesse > 0){
+
+            if (right){
+                int x = (int)(System.currentTimeMillis()/250 - tempsDebutMouvement );
+                vitesse = (x*x)*0.35+4;
+            }else{
+                tempsDebutMouvement = System.currentTimeMillis()/250;
                 vitesse = vitesse - vitesse/10;
-            }
-            if(vitesse < -vitesseMax){
-                vitesse = -vitesseMax;
             }
         }
         else{
-            if(vitesse == 0){
-                tempsDebutMouvement = -1;
+
+            if (left){
+                int x = (int)(System.currentTimeMillis()/250 - tempsDebutMouvement );
+                vitesse = -(x*x)*0.35-4;
             }
-            vitesse = vitesse - vitesse/10;
+            else{
+                tempsDebutMouvement = System.currentTimeMillis()/250;
+                vitesse = vitesse - vitesse/10;
+            }
+        }
 
-            if (Math.abs(vitesse) <= 2) {
-                vitesse = 0;
-
+        if(run) {
+            if (vitesse > vitesseMax) {
+                vitesse = vitesseMax;
+                tempsDebutMouvement = (long)(System.currentTimeMillis()/250 - vitesseMax);
+            } else if (vitesse < -vitesseMax) {
+                vitesse = -vitesseMax;
+                tempsDebutMouvement = (long)(System.currentTimeMillis()/250 - vitesseMax);
+            }
+        }
+        else{
+            if (vitesse > vitesseMax - 10) {
+                vitesse = vitesseMax - 10;
+                tempsDebutMouvement = (long)(System.currentTimeMillis()/250 - vitesseMax-10);
+            } else if (vitesse < -vitesseMax + 10) {
+                vitesse = -vitesseMax + 10;
+                tempsDebutMouvement = (long)(System.currentTimeMillis()/250 - vitesseMax-10);
             }
         }
     }

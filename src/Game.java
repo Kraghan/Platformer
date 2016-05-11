@@ -49,7 +49,7 @@ public class Game {
         GameState state = GameState.RUNNING;
         window.setKeyRepeatEnabled(false);
 
-        boolean leftPressed=false,rightPressed=false,jumpPressed=false;
+        boolean leftPressed=false,rightPressed=false,jumpPressed=false,shiftPressed=false;
 
         while (window.isOpen()) {
             Mouvement playerMovement = Mouvement.NONE;
@@ -77,6 +77,9 @@ public class Game {
                         //centreImage = new Vector2f(centreImage.x - 10, centreImage.y);
                         leftPressed = true;
                     }
+                    if (e.key == Keyboard.Key.LSHIFT){
+                        shiftPressed = true;
+                    }
                     if (e.key == Keyboard.Key.SPACE) {
                         jumpPressed = true;
                     }
@@ -96,6 +99,9 @@ public class Game {
                         //centreImage = new Vector2f(centreImage.x - 10, centreImage.y);
                         leftPressed = false;
                     }
+                    if (e.key == Keyboard.Key.LSHIFT){
+                        shiftPressed = false;
+                    }
                     if (e.key == Keyboard.Key.SPACE) {
                         jumpPressed = false;
                     }
@@ -113,7 +119,7 @@ public class Game {
             if(jumpPressed)
                 player.jump(level.getGravity());
 
-            player.calculVitesse(playerMovement);
+            player.calculVitesse(leftPressed,rightPressed,shiftPressed);
             if(player.isJumping()){
                 player.jump(level.getGravity());
             }else{
