@@ -77,10 +77,14 @@ public class Mob extends Entity {
                 tempsDebutMouvement = (long)(System.currentTimeMillis()/250 - vitesseMax-10);
             }
         }
+        System.out.println(tempsDebutMouvement);
     }
 
-    public void move(){
-        setCoord(new Vector2i(getCoord().x + (int)vitesse, getCoord().y));
+    public void move(boolean onTheGround, int gravity){
+        if(onTheGround)
+            setCoord(new Vector2i(getCoord().x + (int)vitesse, getCoord().y));
+        else
+            setCoord(new Vector2i(getCoord().x + (int)vitesse,getCoord().y+gravity));
     }
 
     // Temps en ms
@@ -99,5 +103,18 @@ public class Mob extends Entity {
 
     public boolean isJumping(){
         return tempsDebutSaut != -1;
+    }
+
+    public void stopJump(){
+        tempsDebutSaut = -1;
+    }
+
+    public void stopMoving(){
+        vitesse = 0;
+        tempsDebutMouvement = -1;
+    }
+
+    public double getVitesse() {
+        return vitesse;
     }
 }

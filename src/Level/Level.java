@@ -1,9 +1,12 @@
 package Level;
 
+import Entity.Collide;
 import Entity.Mob;
 import org.jsfml.graphics.RenderWindow;
+import org.jsfml.system.Vector2i;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Level implements Serializable{
@@ -185,5 +188,35 @@ public class Level implements Serializable{
 
     public void setWallMask(int x, int y, WallBackground wall) {
         this.wallMask[x][y] = wall;
+    }
+
+    public ArrayList<Collide> collide(Vector2i coord){
+        int x = coord.x;
+        int y = coord.y;
+        int casex = x/64;
+        int casey = y/64;
+        int posxSurCase = x%64;
+        int posySurCase = y%64;
+        ArrayList<Collide> res = new ArrayList<>();
+
+        if(x < 0){
+            res.add(Collide.LEFT);
+        }
+        if(y < 0){
+            res.add(Collide.UP);
+        }
+        if(x+64 >= width*64){
+            res.add(Collide.RIGHT);
+        }
+        if(y+64 >= heigth*64){
+            res.add(Collide.DOWN);
+        }
+        if(platformsMask[casex][casey] != null){
+            // Tester si case autour non null
+            if(posxSurCase-32 > 32 && posySurCase+64 >){
+                res.add(Collide.DOWN);
+            }
+        }
+        return res;
     }
 }

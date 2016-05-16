@@ -1,3 +1,4 @@
+import Entity.Collide;
 import Entity.Mob;
 import Entity.Mouvement;
 import Entity.Player;
@@ -29,7 +30,7 @@ public class Game {
         window.create(new VideoMode((int) tailleImage.x, (int) tailleImage.y), "Super platformer !");
 
         TextureManager.loadTheme(Theme.TEMPLE);
-        window.setFramerateLimit(60);
+        window.setFramerateLimit(30);
         View view = new View(new Vector2f(0, 0), new Vector2f(1360, 768));
         window.setView(view);
 
@@ -38,7 +39,8 @@ public class Game {
         Level l = new Level(50, 50);
         for (int x = 0; x < 50; x++) {
             for (int y = 0; y < 50; y++) {
-                l.setPlatformsMask(x, y, Platform.nonPermanentPlatform);
+                if( x%3 != 0 && y%2 != 0)
+                    l.setPlatformsMask(x, y, Platform.nonPermanentPlatform);
                 l.setWallMask(x, y, WallBackground.wall);
             }
         }
@@ -119,13 +121,41 @@ public class Game {
             if(jumpPressed)
                 player.jump(level.getGravity());
 
-            player.calculVitesse(leftPressed,rightPressed,shiftPressed);
+            player.calculVitesse(leftPressed, rightPressed, shiftPressed);
+
+            ArrayList<Collide> collision = level.collide(player.getCoord());
+            boolean onTheGround = false;
+            if(!collision.isEmpty()) {
+                for (Collide collide : collision) {
+                    if (collide == Collide.DOWN){
+                        System.out.println("Collide down");
+                        player.stopJump();
+                        onTheGround = true;
+                    }
+                    else if(collide == Collide.LEFT){
+                        System.out.println("Collide left");
+                        if(player.getVitesse() < 0){
+                            player.stopMoving();
+                        }
+                    }
+                    else if(collide == Collide.RIGHT){
+                        System.out.println("Collide right");
+                        if(player.getVitesse() > 0){
+                            player.stopMoving();
+                        }
+                    }
+                    else if(collide == Collide.UP){
+                        System.out.println("Collide up");
+
+                    }
+                }
+            }
             if(player.isJumping()){
                 player.jump(level.getGravity());
-            }else{
-                player.move();
             }
-
+            else {
+                player.move(onTheGround, level.getGravity());
+            }
             centreImage = new Vector2f(player.getCoord().x,player.getCoord().y);
 
             // On est en menu
